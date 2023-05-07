@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using Il2Cpp;
 using MelonLoader;
 using UnityEngine;
@@ -7,8 +7,7 @@ namespace CraftingHotkey
 {
 	public class Implementation : MelonMod
 	{
-        [Obsolete]
-        public override void OnApplicationStart()
+        public override void OnInitializeMelon()
 		{
 			Debug.Log($"[{Info.Name}] Version {Info.Version} loaded!");
 			Settings.OnLoad();
@@ -61,7 +60,7 @@ namespace CraftingHotkey
 		}
 	}
 
-	[HarmonyLib.HarmonyPatch(typeof(GameManager), "Update")]
+	[HarmonyPatch(typeof(GameManager), "Update")]
 	internal class GameManager_Update
 	{
 		private static void Postfix()
