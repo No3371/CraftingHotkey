@@ -1,76 +1,98 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C51FB8B6-3D53-4ED9-A340-CAB2215DE3B9}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CraftingHotkey</RootNamespace>
-    <AssemblyName>CraftingHotkey</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Assembly-CSharp, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Il2Cppmscorlib, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Il2CppSystem, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="MelonLoader, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="ModSettings, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="UnhollowerBaseLib, Version=0.4.10.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="src\Implementation.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\Settings.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="LICENSE.md" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <!--This is an xml comment. Comments have no impact on compiling.-->
+
+    <PropertyGroup>
+        <!--This needs to be changed for the mod to compile.-->
+        <TheLongDarkPath>..\..\</TheLongDarkPath>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <!--This is the .NET version the mod will be compiled with. Don't change it.-->
+        <TargetFramework>net6.0</TargetFramework>
+
+        <!--This tells the compiler to use the latest C# version.-->
+        <LangVersion>Latest</LangVersion>
+
+        <!--This adds global usings for a few common System namespaces.-->
+        <ImplicitUsings>enable</ImplicitUsings>
+
+        <!--This enables nullable annotation and analysis. It's good coding form.-->
+        <Nullable>enable</Nullable>
+
+        <!--This tells the compiler to use assembly attributes instead of generating its own.-->
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+
+        <!--PDB files are mostly useless for modding since they can't be loaded.-->
+        <DebugType>none</DebugType>
+    </PropertyGroup>
+
+    <!--This tells the compiler where to look for assemblies. Don't change it.-->
+    <PropertyGroup>
+        <MelonLoaderPath>$(TheLongDarkPath)/MelonLoader/net6</MelonLoaderPath>
+        <ManagedPath>$(TheLongDarkPath)/MelonLoader/Managed</ManagedPath>
+        <Il2CppPath>$(TheLongDarkPath)/MelonLoader/Il2CppAssemblies</Il2CppPath>
+        <ModsPath>$(TheLongDarkPath)/Mods</ModsPath>
+        <AssemblySearchPaths>$(AssemblySearchPaths);$(MelonLoaderPath);$(ManagedPath);$(Il2CppPath);$(ModsPath);</AssemblySearchPaths>
+        <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+        <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
+        <OutputType>Library</OutputType>
+    </PropertyGroup>
+
+    <!--This tells the compiler to not include referenced assemblies in the output folder.-->
+    <ItemDefinitionGroup>
+        <Reference>
+            <Private>False</Private>
+        </Reference>
+    </ItemDefinitionGroup>
+
+    <!--This is the list of assemblies that the mod references. Most of these are unnecessary for normal mods, but are included here for completeness.-->
+    <ItemGroup>
+        <Reference Include="Il2CppInterop.Common">
+          <HintPath>..\..\MelonLoader\net6\Il2CppInterop.Common.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppInterop.Runtime">
+          <HintPath>..\..\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="MelonLoader" />
+        <Reference Include="0Harmony" />
+        <Reference Include="Assembly-CSharp" />
+        <Reference Include="Il2CppHOTween" />
+        <Reference Include="Il2Cppmscorlib" />
+        <Reference Include="Il2CppNewtonsoft.Json" />
+        <Reference Include="Il2CppSystem.Configuration" />
+        <Reference Include="Il2CppSystem" />
+        <Reference Include="Il2CppSystem.Runtime.Serialization" />
+        <Reference Include="Il2CppTLD.Addressables" />
+        <Reference Include="Il2CppTLD.Encryption" />
+        <Reference Include="Il2CppTLD.Game.Events.Runtime" />
+        <Reference Include="Il2CppTLD.GameplayTag" />
+        <Reference Include="Il2CppTLD.IO" />
+        <Reference Include="Il2CppTLD.Logging" />
+        <Reference Include="Il2CppTLD.OptionalContent" />
+        <Reference Include="Il2CppTLD.PDID" />
+        <Reference Include="Il2CppTLD.Platform" />
+        <Reference Include="Il2CppTLD.Profiling" />
+        <Reference Include="Il2CppTLD.RuntimeTest" />
+        <Reference Include="Il2CppTLD.SaveState" />
+        <Reference Include="Il2CppTLD.Serialization" />
+        <Reference Include="Il2CppTLD.Stats" />
+        <Reference Include="Il2CppTLD.TimeLib" />
+        <Reference Include="Il2CppTLD.Trial" />
+        <Reference Include="Il2CppTLD.UserGeneratedContent" />
+        <Reference Include="ModSettings">
+          <HintPath>..\..\Mods\ModSettings.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Mathematics" />
+        <Reference Include="Unity.TextMeshPro" />
+        <Reference Include="UnityEngine.AssetBundleModule" />
+        <Reference Include="UnityEngine.CoreModule" />
+        <Reference Include="UnityEngine" />
+        <Reference Include="UnityEngine.InputLegacyModule" />
+        <Reference Include="UnityEngine.InputModule" />
+        <Reference Include="UnityEngine.Il2CppAssetBundleManager" />
+        <Reference Include="UnityEngine.Il2CppImageConversionManager" />
+        <Reference Include="UnityEngine.PhysicsModule">
+          <HintPath>..\..\MelonLoader\Il2CppAssemblies\UnityEngine.PhysicsModule.dll</HintPath>
+        </Reference>
+    </ItemGroup>
 </Project>

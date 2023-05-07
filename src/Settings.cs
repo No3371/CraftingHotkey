@@ -7,7 +7,7 @@ namespace CraftingHotkey
 	{
 		[Name("Key for the Crafting Menu")]
 		[Description("The key you press to show the crafting menu.")]
-		public KeyCode keyCode = KeyCode.T;
+		public KeyCode keyCode = KeyCode.X;
 	}
 	internal static class Settings
 	{
