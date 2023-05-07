@@ -2,9 +2,7 @@
 
 This mod for *The Long Dark* adds a hotkey for the crafting menu. Requires ModSettings.
 
-## [Patreon](https://www.patreon.com/ds5678)
-
-I know many people might skip over this, but I hope you don't. You are so special, and I would appreciate your support. Modding takes lots of time, and I have expenses like food, internet, and rent. If you feel that I have improved your playing experience, please consider supporting me on my [Patreon](https://www.patreon.com/ds5678). Your support helps to ensure that I can continue making mods for you at the pace I am :)
+**This is a up-to-date fork of [ds5678's CraftingHotkey](https://github.com/ds5678/CraftingHotkey).**
 
 ## Installation
 
